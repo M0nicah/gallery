@@ -4,25 +4,36 @@ import datetime as dt
 # Create your models here.
 
 class Location(models.Model):
-    spot_name = models.CharField(max_length= 60, default='')
+    location = models.CharField(max_length= 60 )
 
     def __str__(self):
-        return self.spot_name
+        return self.location
+
+    def save_location(self):
+        self.save()
 
 class Category(models.Model):
-    section_name = models.CharField(max_length=80, default='')
+    category = models.CharField(max_length=80)
 
     def __str__(self):
-        return self.section_name
+        return self.category
 
 class Image(models.Model):
-    image = models.ImageField(blank=False, null=False)
+    image = models.ImageField( upload_to='gallery/', blank=False, null=False)
     image_name = models.CharField(max_length=40)
     image_description = models.TextField()
-    spot_name = models.ForeignKey(Location, on_delete=models.DO_NOTHING, default='')
-    section_name = models.ForeignKey(Category, on_delete=models.DO_NOTHING, default='')
+    location = models.ForeignKey(Location, on_delete=models.DO_NOTHING, null=True)
+    category = models.ManyToManyField(Category)
     posted_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.image_name
+
+   
+    def save_image(self):
+        self.save()
+
+    class Meta:
+        ordering = ['image_name']
+  
 
