@@ -39,7 +39,7 @@ class Image(models.Model):
 
 
     class Meta:
-        ordering = ['image_name']
+        ordering = ['posted_date']
 
 
     @classmethod

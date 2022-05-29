@@ -45,7 +45,10 @@ def delete_image(request, pk):
 
     return render(request, 'galleria/delete.html', {'image':image})
 
+def search_results(request):
+   x = request.GET.get('x') if request.GET.get('x') != None else ''
+   images = Image.search_image(category=x) or Image.filter_by_location(location=x)
 
-
+   return render(request, 'galleria/gallery.html', {'images':images})
 
 
