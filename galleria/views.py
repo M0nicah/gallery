@@ -9,6 +9,19 @@ def gallery(request):
     image = Image.uploaded_images()
     return render(request, 'galleria/gallery.html', {'images':image})
 
+def add_image(request):
+    category = Category.objects.all()
+    location = Location.objects.all()
+
+    form = ImageForm()
+    if request.method == 'POST':
+        form = ImageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('gallery')
+
+    return render(request, 'galleria/image_form.html', {'form':form,'category':category, 'location':location })
+
 def update_image(request, pk):
     categories = Category.objects.all()
     locations = Location.objects.all()
@@ -19,7 +32,7 @@ def update_image(request, pk):
         form = ImageForm(request.POST, instance=image)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('gallery')
 
     return render(request, 'galleria/image_form.html', { 'form': form, 'categories':categories, 'locations':locations } )
 

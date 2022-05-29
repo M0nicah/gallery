@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     re_path('^$', views.gallery, name='gallery'),
+    path('add_image/',views.add_image, name='add_image'),
     path('update_image/<str:pk>',views.update_image, name='update_image'),
     path('delete_image/<str:pk>',views.delete_image, name='delete_image')
 
