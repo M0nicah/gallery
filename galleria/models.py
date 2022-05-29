@@ -51,3 +51,7 @@ class Image(models.Model):
     def update_image(cls,pk):
         return cls.objects.get(id=pk)
 
+    @classmethod
+    def search_image(cls,category):
+        return cls.objects.filter(category__name__icontains=category)
+

@@ -15,6 +15,7 @@
       <h4 class="text-center"> {{ image.location }} </h4>
       <blockquote class="text-center"> Posted {{ image.posted_date|timesince }} ago,</blockquote>
       <a href="{% url 'delete_image' image.id %}"><button class="btn btn-danger">Delete</button></a>
+      <a href="{% url 'update_image' image.id %}"><button class="btn btn-info">Update</button></a>
     </div>
     <!--Display news Article images  -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
