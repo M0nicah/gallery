@@ -1,3 +1,4 @@
+from email.mime import image
 from django.db import models
 import datetime as dt
 
@@ -33,7 +34,14 @@ class Image(models.Model):
     def save_image(self):
         self.save()
 
+
     class Meta:
         ordering = ['image_name']
+
+
+    @classmethod
+    def uploaded_images(cls):
+        images = cls.objects.filter()
+        return images
   
 
