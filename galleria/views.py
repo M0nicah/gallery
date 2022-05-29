@@ -1,11 +1,37 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from galleria.models import Image, Location, Category
 # Create your views here.
 
 def gallery(request):
-    message = 'unsplash like gallery'
-    images = Image.uploaded_images()
-    return render(request, 'galleria/gallery.html', {'message':message, 'images':images})
+    image = Image.uploaded_images()
+    return render(request, 'galleria/gallery.html', {'images':image})
+
+def update_image(request, pk):
+    categories = Category.objects.all()
+    locations = Location.objects.all()
+
+    image = Image.update_image(pk)
+    form = ImageForm(instance=image)
+    if request.method == "POST":
+        form = ImageForm(request.POST, instance=image)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = { 'form': form, 'categories':categories, 'locations':locations }
+    return render(request, 'galleria/image_form.html', context)
+
+def delete_image(request, pk):
+    image = Image.objects.get(id=pk)
+    
+    if request.method == 'POST':
+        image.delete_image()
+        return redirect('gallery')
+
+    return render(request, 'galleria/delete.html', {'image':image})
+
+
 
 

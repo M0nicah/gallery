@@ -1,4 +1,4 @@
-from email.mime import image
+
 from django.db import models
 import datetime as dt
 
@@ -20,11 +20,11 @@ class Category(models.Model):
         return self.category
 
 class Image(models.Model):
-    image = models.ImageField( upload_to='gallery/', blank=False, null=False)
+    image = models.ImageField( upload_to='gallery/', blank=False, null=True)
     image_name = models.CharField(max_length=40)
     image_description = models.TextField()
-    location = models.ForeignKey(Location, on_delete=models.DO_NOTHING, null=True)
-    category = models.ManyToManyField(Category)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     posted_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -33,6 +33,9 @@ class Image(models.Model):
    
     def save_image(self):
         self.save()
+
+    def delete_image(self):
+        self.delete()
 
 
     class Meta:
@@ -43,5 +46,4 @@ class Image(models.Model):
     def uploaded_images(cls):
         images = cls.objects.filter()
         return images
-  
 

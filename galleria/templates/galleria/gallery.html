@@ -1,18 +1,20 @@
 {%extends 'galleria/base.html'%}
 
 {% block content %}
-{{block.super}}
-<h1>This is gallery html</h1>
+
 <p class="text-center text-success">A gallery is where we store our photos</p>
 
 <div class="container">
   {% for image in images %}
-  <div class="row card justify-content-center w-10">
+  <div class="row card justify-content-center">
     <!-- displaying News articles -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
       <h2 class="text-center"> {{ image.image_name }} </h2>
       <h3 class="text-center"> {{ image.image_description }} </h3>
-      <h4 class="text-center"> {{ image.image_location }} </h4>
+      <h5 class="text-center">Category: {{ image.category }} </h5>
+      <h4 class="text-center"> {{ image.location }} </h4>
+      <blockquote class="text-center"> Posted {{ image.posted_date|timesince }} ago,</blockquote>
+      <a href="{% url 'delete_image' image.id %}"><button class="btn btn-danger">Delete</button></a>
     </div>
     <!--Display news Article images  -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
