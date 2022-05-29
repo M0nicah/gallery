@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from galleria.models import Image, Location, Category
+from galleria.forms import ImageForm
 # Create your views here.
 
 def gallery(request):
@@ -20,8 +21,7 @@ def update_image(request, pk):
             form.save()
             return redirect('home')
 
-    context = { 'form': form, 'categories':categories, 'locations':locations }
-    return render(request, 'galleria/image_form.html', context)
+    return render(request, 'galleria/image_form.html', { 'form': form, 'categories':categories, 'locations':locations } )
 
 def delete_image(request, pk):
     image = Image.objects.get(id=pk)
