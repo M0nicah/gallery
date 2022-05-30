@@ -30,18 +30,48 @@ img {
   margin-top: 2rem;
 }
 
-.delete-footer{
-    
-    justify-content: center;
-    align-items: center;
-    margin: auto;
+.delete-footer {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
-.delete-footer a{
-    background-color: rgb(6, 93, 64);
-    margin-right: 2rem;
-    color: white;
+.delete-footer a {
+  background-color: rgb(6, 93, 64);
+  margin-right: 2rem;
+  color: white;
 }
-.delete-footer input{
-    background-color: rgb(6, 93, 64);
-    color: white;
+.delete-footer input {
+  background-color: rgb(6, 93, 64);
+  color: white;
 }
+
+.edit-form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: rgb(230, 227, 227);
+  text-align: center;
+  font-size: larger;
+  width: 40vw;
+  height: 60vh;
+  padding: 1rem;
+  border-radius: 15px;
+  margin-top: 2rem;
+}
+
+.form-wrapper{
+    display: grid;
+    padding: 1rem;
+}
+.form-group{
+    padding: 1rem;
+}
+.image{
+    padding: 1rem;
+    background-color: white;
+    display: flex;
+    padding: 1rem;
+    color: rgb(6, 93, 64) ;
+}
+
