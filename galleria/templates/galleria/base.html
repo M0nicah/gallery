@@ -15,7 +15,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script defer src="{% static 'javascript/main.js' %}"></script> 
     {% endblock %}
+
+    
   </head>
   <body>
     <nav
@@ -42,13 +45,17 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Photos</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin">Dashboard</a>
+            </li>
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" role="search" action="{% url 'search_image' %}">
             <input
               class="form-control me-2"
-              type="search"
+              type="text"
               placeholder="Search"
               aria-label="Search"
+              name="category"
             />
             <button class="btn btn-outline-dark" type="submit">Search</button>
           </form>
@@ -62,5 +69,6 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+
   </body>
 </html>

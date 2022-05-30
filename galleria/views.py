@@ -6,8 +6,9 @@ from galleria.forms import ImageForm
 # Create your views here.
 
 def gallery(request):
-    image = Image.uploaded_images()
-    return render(request, 'galleria/gallery.html', {'images':image})
+    images = Image.uploaded_images()
+    
+    return render(request, 'galleria/gallery.html', {'images':images})
 
 def add_image(request):
     category = Category.objects.all()
@@ -45,10 +46,16 @@ def delete_image(request, pk):
 
     return render(request, 'galleria/delete.html', {'image':image})
 
-def search_results(request):
-   x = request.GET.get('x') if request.GET.get('x') != None else ''
-   images = Image.search_image(category=x) or Image.filter_by_location(location=x)
+    
+def search_image(request):
+    if 'category' in request.GET and request.GET["category"]:             #checks if the query exists in the request .get method then check if it has a value
+        search_term = request.GET.get("category")                        #then we get the search term using the method called on the request.get object
+        searched_categories = Image.search_category(search_term)        #calling the searched articles and passing in the input(search_term). if articles of the input is found it is rendered in th html.
+        message = f"{search_term}"
 
-   return render(request, 'galleria/gallery.html', {'images':images})
+        return render(request, 'galleria/search.html',{"message":message, "images": searched_categories})
+ #if the condition is not met we pass in an error message to inform the user what went wrong
 
-
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'galleria/search.html',{"message":message})

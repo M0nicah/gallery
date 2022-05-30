@@ -1,4 +1,3 @@
-
 from django.db import models
 import datetime as dt
 
@@ -54,6 +53,11 @@ class Image(models.Model):
         return cls.objects.get(id=pk)
 
     @classmethod
-    def search_image(cls,category):
-        return cls.objects.filter(category__name__icontains=category)
+    def search_category(cls,search_term):
+        images = cls.objects.filter(category__category__icontains=search_term)
+        return images
+
+    @classmethod
+    def filter_by_location(cls,location):
+        return cls.objects.filter(location__location__icontains=location)
 
