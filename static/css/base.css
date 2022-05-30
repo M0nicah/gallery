@@ -1,8 +1,47 @@
-/* .card{
-    
-} */
+.container {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-gap: 15px;
+  padding: 2rem;
+  margin-top: 1rem;
+}
 
-.nav{
-    background-color: #e4dee4;
+.nav {
+  background-color: #e4dee4;
+}
+
+img {
+  width: 35vw;
+  height: 35vh;
+}
+
+.delete-form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: rgb(230, 227, 227);
+  text-align: center;
+  font-size: larger;
+  width: 25vw;
+  height: 30vh;
+  padding: 1rem;
+  border-radius: 15px;
+  margin-top: 2rem;
+}
+
+.delete-footer{
     
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.delete-footer a{
+    background-color: rgb(6, 93, 64);
+    margin-right: 2rem;
+    color: white;
+}
+.delete-footer input{
+    background-color: rgb(6, 93, 64);
+    color: white;
 }

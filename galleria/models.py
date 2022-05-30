@@ -13,6 +13,9 @@ class Location(models.Model):
     def save_location(self):
         self.save()
 
+    def delete_location(self):
+        self.delete()
+
 class Category(models.Model):
     category = models.CharField(max_length=80)
 
@@ -36,7 +39,6 @@ class Image(models.Model):
 
     def delete_image(self):
         self.delete()
-
 
     class Meta:
         ordering = ['posted_date']

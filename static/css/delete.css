@@ -1,0 +1,8 @@
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: black;
+    color: green;
+}

@@ -1,15 +1,12 @@
 {% extends 'galleria/base.html' %}
-{% load static %}
 
-{% block link %}
-    <link rel="stylesheet" href="{% static 'styles/delete.css' %}">
-{% endblock %}
+{% load static %}
 
 {% block content %}
 <main>
     <form class="delete-form" action="" method="POST">
         {% csrf_token %}
-        <p>Are you sure you want to delete <span>"{{image.name}}"</span>?</p>
+        <p>Are you sure you want to delete image <span>"{{image.image_name}}"</span>?</p>
         <div class="delete-footer">
             <a class="btn delete-btn" href="{{ request.META.HTTP_REFERER }}">Go back</a>
             <input class="btn" type="submit" value="Yes">
