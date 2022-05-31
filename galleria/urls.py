@@ -8,7 +8,7 @@ urlpatterns = [
     path('add_image/',views.add_image, name='add_image'),
     path('update_image/<str:pk>',views.update_image, name='update_image'),
     path('delete_image/<str:pk>',views.delete_image, name='delete_image'),
-    path('search_image/', views.search_image, name="search_image"),
+    path('search_image/', views.search_image, name="search_image")
 
     ]
 

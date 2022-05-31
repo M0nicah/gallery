@@ -3,76 +3,45 @@
 {% block content %}
 {% load static %}
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/w3-css/4.1.0/w3.css" integrity="sha512-Ef5r/bdKQ7JAmVBbTgivSgg3RM+SLRjwU0cAgySwTSv4+jYcVeDukMp+9lZGWT78T4vCUxgT3g+E8t7uabwRuw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <p class="text-center text-success">A gallery is where we store our photos</p>
 
 <div class="container">
   {% for image in images %}
   <div class="row justify-content-center">
-    <!-- displaying News articles -->
-    <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-      <h2 class="text-center"> {{ image.image_name }} </h2>
-      <h3 class="text-center"> {{ image.image_description }} </h3>
-      <h5 class="text-center">Category: {{ image.category }} </h5>
-      <h4 class="text-center"> {{ image.location }} </h4>
-    </div> -->
-    <!--Display  images  -->
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 card">
-      <img src="{{image.image.url}}" class="img-responsive" id="image" alt="{{ image.image_description }}">
-      <a href="{% url 'update_image' image.id %}"><button class="btn btn-info">Update</button></a>
+    <div class="col d-grid card">
+      <img src="{{image.image.url}}" class="img-responsive" title="{{ image.image_description }}" onclick="onClick(this)">
       <a href="{% url 'delete_image' image.id %}"><button class="btn btn-danger">Delete</button></a>
       <blockquote class="text-center text-muted"> Posted {{ image.posted_date|timesince }} ago,</blockquote>
     </div>
 
-
-    <div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="modal">
-      <!-- <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md">
-        <div class="mt-3 text-center">
-          <div
-            class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100"
-          >
-            <svg
-              class="h-6 w-6 text-green-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 13l4 4L19 7"
-              ></path>
-            </svg>
-          </div>
-          <h3 class="text-lg leading-6 font-medium text-gray-900">Successful!</h3>
-          <div class="mt-2 px-7 py-3">
-            <p class="text-sm text-gray-500">
-              Account has been successfully registered!
-            </p>
-          </div>
-          <div class="items-center px-4 py-3">
-            <button
-              id="ok-btn"
-              class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
-            >
-              OK
-            </button>
-          </div>
-        </div> -->
+    <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+      <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+      <div class="w3-modal-content w3-animate-zoom">
+        <img id="img01" class="img-responsive" title="{{ image.title }} {{ image.category }}...">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+          <h2 class="text-center"> {{ image.image_name }} </h2>
+          <h3 class="text-center"> {{ image.image_description }} </h3>
+          <h5 class="text-center">Category: {{ image.category }} </h5>
+          <h4 class="text-center">Location: {{ image.location }} </h4>
+          <a href="{% url 'update_image' image.id %}"><button class="btn btn-info">Update</button></a>
+        </div>
       </div>
     </div>
-
   </div>
-
 </div>
-  
   {% endfor %}
-
   <div>
     <a href="{% url 'add_image'  %}"><button class="btn btn-primary justify-content-center">Add New Image</button></a>
   </div>
 </div>
+<script>
+  function onClick(element) {
+    document.getElementById("img01").src = element.src;
+    document.getElementById("modal01").style.display = "block";
+  }
+</script>
 
 {% endblock %}
+
+

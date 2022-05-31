@@ -3,21 +3,21 @@
 <div class="container">
 
   <div class="row">
-    {% if images%}
-      <h2>Found {{ images|length }} of searched term {{message}}</h2>
+    {% if locations%}
+      <h2>Found {{ locations|length }} of searched term {{message}}</h2>
     {% else %}
-      <h2> Found 0 images for the search term {{message}}</h2>
+      <h2> Found 0 locations for the search term {{message}}</h2>
     {% endif %}
 
   </div>
 
   <div class="row">
 
-  {% if images %}
-    {% for image in images %}
+  {% if locations %}
+    {% for location in locations %}
       <div class="col-sm-6 d-grid gap-3">
           <img src="{{image.image.url}}" alt="{{ image.image_description}}"/>
-          <h5>{{image.image_description}}</h5>
+          <h5>{{image.location}}</h5>
       </div>
     {% endfor %}
   {% endif %}
