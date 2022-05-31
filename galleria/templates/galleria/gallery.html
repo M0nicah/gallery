@@ -10,7 +10,7 @@
   {% for image in images %}
   <div class="row justify-content-center">
     <div class="col d-grid card">
-      <img src="{{image.image.url}}" class="img-responsive" title="{{ image.image_description }}" onclick="onClick(this)">
+      <img src="{{image.image.url}}" class="img-responsive" title="{{ image.image_description }} {{ image.category }}" onclick="onClick(this)">
       <a href="{% url 'delete_image' image.id %}"><button class="btn btn-danger">Delete</button></a>
       <blockquote class="text-center text-muted"> Posted {{ image.posted_date|timesince }} ago,</blockquote>
     </div>
@@ -18,7 +18,7 @@
     <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
       <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
       <div class="w3-modal-content w3-animate-zoom">
-        <img id="img01" class="img-responsive" title="{{ image.title }} {{ image.category }}...">
+        <img id="img01" class="img-responsive" title="{{ image.image_name }}">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
           <h2 class="text-center"> {{ image.image_name }} </h2>
           <h3 class="text-center"> {{ image.image_description }} </h3>
