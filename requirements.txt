@@ -15,4 +15,4 @@ pytz==2018.5
 soupsieve==2.3.2.post1
 sqlparse==0.4.2
 tzdata==2022.1
-whitenoise==4.0
+whitenoise==6.1.0
